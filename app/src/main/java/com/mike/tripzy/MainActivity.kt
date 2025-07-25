@@ -16,6 +16,9 @@ import com.mike.tripzy.ui.screens.HomeScreen
 import com.mike.tripzy.ui.screens.SignInScreen
 import com.mike.tripzy.ui.screens.SignUpScreen
 import com.mike.tripzy.ui.screens.SplashScreen
+import com.mike.tripzy.ui.screens.TripsScreen // Import TripsScreen
+import com.mike.tripzy.ui.screens.FavoritesScreen // Import FavoritesScreen
+import com.mike.tripzy.ui.screens.ProfileScreen // Import ProfileScreen
 import com.mike.tripzy.ui.theme.TripzyTheme
 import com.google.firebase.FirebaseApp
 import androidx.compose.material3.Text // Import Text composable
@@ -47,16 +50,19 @@ class MainActivity : ComponentActivity() {
                             SignInScreen(navController = navController)
                         }
                         composable("signUp") {
-                            SignUpScreen()
+                            SignUpScreen(navController = navController) // Pass navController to SignUpScreen
                         }
                         composable("home") {
                             HomeScreen(navController = navController)
                         }
                         composable("trips") {
-                            TripsScreen() // Placeholder for Trips screen
+                            TripsScreen(navController = navController)
                         }
                          composable("favorites") {
-                            FavoritesScreen() // Placeholder for Favorites screen
+                            FavoritesScreen(navController = navController)
+                        }
+                         composable("profile") {
+                            ProfileScreen(navController = navController) // Add Profile screen destination
                         }
                     }
                 }
@@ -65,16 +71,24 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// Keep placeholder composables here for now, or move them to their own files
 @Composable
-fun TripsScreen() { // Placeholder composable
+fun TripsScreen(navController: NavController) { 
     Box(modifier = Modifier.fillMaxSize()) {
         Text("Trips Screen")
     }
 }
 
 @Composable
-fun FavoritesScreen() { // Placeholder composable
+fun FavoritesScreen(navController: NavController) { 
      Box(modifier = Modifier.fillMaxSize()) {
         Text("Favorites Screen")
+    }
+}
+
+@Composable
+fun ProfileScreen(navController: NavController) { // Placeholder composable
+     Box(modifier = Modifier.fillMaxSize()) {
+        Text("Profile Screen")
     }
 }

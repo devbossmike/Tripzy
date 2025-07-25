@@ -13,6 +13,12 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.delay
+import androidx.compose.foundation.Image // Import Image composable
+import androidx.compose.ui.res.painterResource // Import painterResource
+import com.mike.tripzy.R // Import your R class to access drawables
+import androidx.compose.ui.graphics.Brush // Import Brush for gradients
+import com.mike.tripzy.ui.theme.DeepBlue // Import custom colors
+import com.mike.tripzy.ui.theme.Purple // Import custom colors
 
 @Composable
 fun SplashScreen(onTimeout: () -> Unit) {
@@ -34,11 +40,21 @@ fun SplashScreen(onTimeout: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        DeepBlue,
+                        Purple
+                    )
+                )
+            )
             .alpha(alphaAnim.value),
         contentAlignment = Alignment.Center
     ) {
-        Text("Tripzy") // Placeholder for your logo or animation
+        Image(
+            painter = painterResource(id = R.drawable.ic_app_logo), // Replace with your logo drawable resource name
+            contentDescription = "App Logo"
+        )
     }
 }
 

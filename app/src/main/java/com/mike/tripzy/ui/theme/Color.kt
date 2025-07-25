@@ -2,10 +2,16 @@ package com.mike.tripzy.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val primaryBlue = Color(0xFF2196F3)
+val lightBlue = Color(0xFFBBDEFB)
+val accentBlue = Color(0xFF42A5F5)
+val darkBlue = Color(0xFF1976D2)
+val textColor = Color(0xFF212121)
+val secondaryTextColor = Color(0xFF757575)
+val dividerColor = Color(0xFFBDBDBD)
+val white = Color(0xFFFFFFFF)
+val black = Color(0xFF000000)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// You can add more colors as needed based on the image
+val backgroundGradientStart = Color(0xFFE3F2FD)
+val backgroundGradientEnd = Color(0xFFBBDEFB)
