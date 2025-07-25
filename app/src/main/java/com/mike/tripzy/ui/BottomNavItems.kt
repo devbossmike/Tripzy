@@ -1,9 +1,12 @@
 package com.mike.tripzy.ui
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.TravelExplore
+import androidx.compose.material.icons.filled.TravelExplore as FilledTravelExplore
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class BottomNavItem(
@@ -20,14 +23,19 @@ object BottomNavItems {
             icon = Icons.Filled.Home
         ),
         BottomNavItem(
-            name = "Search",
-            route = "search",
-            icon = Icons.Filled.Search
+            name = "Explore",
+            route = "explore",
+            icon = Icons.Filled.FilledTravelExplore
         ),
         BottomNavItem(
-            name = "Settings",
-            route = "settings",
+            name = "Trips",
+            route = "trips",
             icon = Icons.Filled.Settings
+        ),
+        BottomNavItem(
+            name = "Favorites",
+            route = "favorites",
+            icon = Icons.Filled.Favorite
         )
     )
 }
