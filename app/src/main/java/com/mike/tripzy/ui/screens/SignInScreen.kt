@@ -22,6 +22,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.PhoneAuthProvider
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardOptions
 
 
 @Composable
@@ -34,7 +36,8 @@ fun SignInScreen(navController: NavController = rememberNavController()) {
     var showCodeField by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
-    val googleSignInClient = remember { buildGoogleSignInClient() }
+    val context = LocalContext.current
+    val googleSignInClient = remember { buildGoogleSignInClient(context) }
     val googleSignInLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
@@ -117,7 +120,7 @@ fun SignInScreen(navController: NavController = rememberNavController()) {
                 value = phoneNumber,
                 onValueChange = { phoneNumber = it },
                 label = { Text("Phone Number") },
-                keyboardOptions = androidx.compose.ui.text.input.KeyboardOptions(keyboardType = KeyboardType.Phone),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -142,7 +145,7 @@ fun SignInScreen(navController: NavController = rememberNavController()) {
                 value = verificationCode,
                 onValueChange = { verificationCode = it },
                 label = { Text("Verification Code") },
-                keyboardOptions = androidx.compose.ui.text.input.KeyboardOptions(keyboardType = KeyboardType.Number),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -198,16 +201,12 @@ fun SignInScreen(navController: NavController = rememberNavController()) {
     }
 }
 
-@Composable
-private fun buildGoogleSignInClient(): GoogleSignInClient {
+private fun buildGoogleSignInClient(context: android.content.Context): GoogleSignInClient {
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestIdToken("YOUR_WEB_CLIENT_ID") // Replace with your web client ID
         .requestEmail()
         .build()
-    // TODO: Get the context correctly. This might require passing context from the Activity.
-    // return GoogleSignIn.getClient(context, gso)
-    // For now, returning null or a dummy client is not feasible within this environment.
-    throw NotImplementedError("GoogleSignInClient initialization requires context")
+    return GoogleSignIn.getClient(context, gso)
 }
 
 @Preview(showBackground = true)
