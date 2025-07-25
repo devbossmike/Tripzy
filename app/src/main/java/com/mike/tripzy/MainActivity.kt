@@ -18,6 +18,8 @@ import com.mike.tripzy.ui.screens.SignUpScreen
 import com.mike.tripzy.ui.screens.SplashScreen
 import com.mike.tripzy.ui.theme.TripzyTheme
 import com.google.firebase.FirebaseApp
+import androidx.compose.material3.Text // Import Text composable
+import androidx.compose.foundation.layout.Box // Import Box composable
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,17 +44,37 @@ class MainActivity : ComponentActivity() {
                             })
                         }
                         composable("signIn") {
-                            SignInScreen()
+                            SignInScreen(navController = navController)
                         }
                         composable("signUp") {
                             SignUpScreen()
                         }
                         composable("home") {
-                            HomeScreen()
+                            HomeScreen(navController = navController)
+                        }
+                        composable("trips") {
+                            TripsScreen() // Placeholder for Trips screen
+                        }
+                         composable("favorites") {
+                            FavoritesScreen() // Placeholder for Favorites screen
                         }
                     }
                 }
             }
         }
+    }
+}
+
+@Composable
+fun TripsScreen() { // Placeholder composable
+    Box(modifier = Modifier.fillMaxSize()) {
+        Text("Trips Screen")
+    }
+}
+
+@Composable
+fun FavoritesScreen() { // Placeholder composable
+     Box(modifier = Modifier.fillMaxSize()) {
+        Text("Favorites Screen")
     }
 }
