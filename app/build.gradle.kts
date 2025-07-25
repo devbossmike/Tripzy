@@ -59,6 +59,10 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.0.0") // For Google Sign-In
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+    // Compose Material Icons
+    implementation("androidx.compose.material:material-icons-core")
+    implementation("androidx.compose.material:material-icons-extended")
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
