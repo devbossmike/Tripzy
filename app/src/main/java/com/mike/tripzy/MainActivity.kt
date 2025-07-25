@@ -32,8 +32,15 @@ class MainActivity : ComponentActivity() {
                 if (showSplashScreen) {
                     SplashScreen(onTimeout = { showSplashScreen = false })
                 } else {
-                    val startDestination = if (FirebaseAuth.getInstance().currentUser != null) "home" else "signIn"
-                    NavHost(navController = navController, startDestination = startDestination) {
+                    NavHost(navController = navController, startDestination = "splash") {
+                        composable("splash") {
+                            SplashScreen(onTimeout = {
+                                val startDestination = if (FirebaseAuth.getInstance().currentUser != null) "home" else "signIn"
+                                navController.navigate(startDestination) {
+                                    popUpTo("splash") { inclusive = true }
+                                }
+                            })
+                        }
                         composable("signIn") {
                             SignInScreen()
                         }
