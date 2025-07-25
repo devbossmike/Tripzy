@@ -16,7 +16,7 @@ import com.mike.tripzy.R
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     var selectedItem by remember { mutableStateOf(0) }
-    val items = listOf("Home", "Favorites", "Profile")
+    val items = listOf("home", "favorites", "profile") // Use routes instead of display names
     val icons = listOf(
         R.drawable.ic_home,
         R.drawable.ic_favorites,
@@ -31,7 +31,16 @@ fun BottomNavigationBar(navController: NavController) {
                 selected = selectedItem == index,
                 onClick = {
                     selectedItem = index
-                    // navController.navigate(item)
+                    navController.navigate(item) {
+                        // Avoid building up a large stack of the same screen
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
+                        // Avoid multiple copies of the same destination when reselecting the same item
+                        launchSingleTop = true
+                        // Restore state when reselecting a previously selected item
+                        restoreState = true
+                    }
                 }
             )
         }
