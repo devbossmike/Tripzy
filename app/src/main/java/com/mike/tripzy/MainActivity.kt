@@ -17,10 +17,12 @@ import com.mike.tripzy.ui.screens.SignInScreen
 import com.mike.tripzy.ui.screens.SignUpScreen
 import com.mike.tripzy.ui.screens.SplashScreen
 import com.mike.tripzy.ui.theme.TripzyTheme
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         enableEdgeToEdge()
         setContent {
             TripzyTheme {
